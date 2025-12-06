@@ -1,21 +1,22 @@
 <script lang="ts">
-	import type { ShoppingList } from '$lib/models/list';
+	import type { List } from '$lib/models';
+	import { createList } from '$lib/utils';
 
-	let { className, placeholder, lists = $bindable() } = $props<{ className: string, placeholder: string, lists: ShoppingList[] }>();
+	let { className, placeholder, lists = $bindable() , fetchLists = $bindable() } = $props<{ className: string, placeholder: string, lists: List[], fetchLists: () => void }>();
 
 	let name = $state('');
 
-	function handleInput() {
+	async function handleInput() {
 		if (!name.trim()) {
 			return;
 		}
-		lists.push({
-			id: lists.length + 1,
-			name,
-			items: []
-		});
+		const newList = await createList(name);
+
 		name = '';
+		fetchLists();
 	}
+
+	
 </script>
 
 <div class="flex self-center">
@@ -30,6 +31,6 @@
 		onclick={handleInput}
 		type="button"
 	>
-		+
+	╋
 	</button>
 </div>

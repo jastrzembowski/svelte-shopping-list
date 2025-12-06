@@ -1,11 +1,13 @@
-export interface ShoppingItem {
+export interface Product {
     id: number;
-    name: string;
-    done: boolean;
+    name?: string;
+    isBought: boolean;
+    quantity: number;
   }
   
-  export interface ShoppingList {
-    id: number;
-    name: string;
-    items: ShoppingItem[];
+  export interface List {
+    id: string;
+    name?: string;
+    creationTimeStamp: number;
+    products: Product[];
   }
