@@ -6,7 +6,6 @@
 	let { isDarkMode = $bindable() , lists = $bindable() , fetchLists = $bindable() } = $props<{ isDarkMode: boolean, lists: List[], fetchLists: () => void }>();
 
 	$effect(() => {
-		// Ensure component rerenders when isDarkMode changes
 		isDarkMode;
 	});
 
